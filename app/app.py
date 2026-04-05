@@ -287,6 +287,9 @@ def parse_contents(contents, filename):
         stats = analyzer.get_statistics()
         viz = VizGenerator(df)
         text_columns = analyzer.get_text_columns()
+        for col in df.columns:
+            if col.startswith('año_'):
+                df[col] = pd.to_numeric(df[col], errors='coerce')
 
         children = [
             dbc.Card([
