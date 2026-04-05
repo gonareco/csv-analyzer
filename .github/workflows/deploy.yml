@@ -1,0 +1,41 @@
+name: Build Windows EXE
+
+on:
+  push:
+    tags:
+      - 'v*'  # Se activa cuando creás un tag como v1.0.0
+  workflow_dispatch:  # Permite ejecutarlo manualmente
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout código
+      uses: actions/checkout@v4
+
+    - name: Setup Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+
+    - name: Instalar dependencias
+      run: |
+        pip install -r requirements.txt
+        pip install pyinstaller
+
+    - name: Generar .exe
+      run: |
+        pyinstaller --onefile --name "CSV_Analyzer" --add-data "app/processors;processors" app/app.py
+
+    - name: Subir artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: CSV_Analyzer_Windows
+        path: dist/CSV_Analyzer.exe
+
+    - name: Subir a Release
+      uses: softprops/action-gh-release@v1
+      with:
+        files: dist/CSV_Analyzer.exe
+      if: startsWith(github.ref, 'refs/tags/')
