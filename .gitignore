@@ -19,3 +19,5 @@ scripts/
 tests/
 data/
 .env.example
+app/layouts/
+app/utils/

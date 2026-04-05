@@ -100,6 +100,9 @@ MIT - Libre para uso educativo y comercial.
 
     Bootstrap
 
-📧 Contacto: GitHub
+📧 Contacto:
+- GitHub: - [gonareco](https://github.com/gonareco)
+- LinkedIn: [Gonzalo Areco] www.linkedin.com/in/gonzalo-areco-5b3658223/
+- Correo: gonareco+dev@gmail.com
 
 ⭐ ¡Si te sirvió, dale una estrella al proyecto!
