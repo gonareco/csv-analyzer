@@ -17,16 +17,16 @@ jobs:
     - name: Setup Python
       uses: actions/setup-python@v5
       with:
-        python-version: '3.11'  # Python 3.11 es más compatible con nltk
+        python-version: '3.11'
 
-    - name: Instalar dependencias y datos de NLTK
+    - name: Instalar dependencias
       run: |
         python -m pip install --upgrade pip setuptools wheel
         pip install -r requirements.txt
         pip install pyinstaller
         python -c "import nltk; nltk.download('punkt'); nltk.download('vader_lexicon'); nltk.download('stopwords')"
 
-    - name: Generar .exe para 64 bits
+    - name: Generar .exe
       run: |
         pyinstaller --onefile --name "CSV_Analyzer" `
           --add-data "app/processors;processors" `
@@ -42,11 +42,13 @@ jobs:
     - name: Subir artifact
       uses: actions/upload-artifact@v4
       with:
-        name: CSV_Analyzer_Windows_x64
+        name: CSV_Analyzer_Windows
         path: dist/CSV_Analyzer.exe
 
-    - name: Subir a Release
+    - name: Crear Release y subir .exe
       uses: softprops/action-gh-release@v1
       with:
         files: dist/CSV_Analyzer.exe
-      if: startsWith(github.ref, 'refs/tags/')
+        generate_release_notes: true
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
