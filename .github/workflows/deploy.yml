@@ -3,8 +3,8 @@ name: Build Windows EXE
 on:
   push:
     tags:
-      - 'v*'  # Se activa cuando creás un tag como v1.0.0
-  workflow_dispatch:  # Permite ejecutarlo manualmente
+      - 'v*'
+  workflow_dispatch:
 
 jobs:
   build:
@@ -17,16 +17,26 @@ jobs:
     - name: Setup Python
       uses: actions/setup-python@v5
       with:
-        python-version: '3.11'
+        python-version: '3.11'  # Python 3.11 es más compatible
 
     - name: Instalar dependencias
       run: |
+        python -m pip install --upgrade pip setuptools wheel
         pip install -r requirements.txt
         pip install pyinstaller
+        python -c "import nltk; nltk.download('punkt'); nltk.download('vader_lexicon'); nltk.download('stopwords')"
 
     - name: Generar .exe
       run: |
-        pyinstaller --onefile --name "CSV_Analyzer" --add-data "app/processors;processors" app/app.py
+        pyinstaller --onefile --name "CSV_Analyzer" `
+          --add-data "app/processors;processors" `
+          --hidden-import=nltk `
+          --hidden-import=nltk.tokenize `
+          --hidden-import=nltk.corpus `
+          --hidden-import=nltk.sentiment `
+          --hidden-import=nltk.sentiment.vader `
+          --collect-data=nltk `
+          app/app.py
 
     - name: Subir artifact
       uses: actions/upload-artifact@v4
