@@ -1,4 +1,3 @@
-
 ![Python Version](https://img.shields.io/badge/python-3.8%2B-blue)
 ![Dash Version](https://img.shields.io/badge/dash-2.14.0-brightgreen)
 ![License](https://img.shields.io/badge/license-MIT-yellow)
@@ -8,12 +7,12 @@
 
 ## 🚀 ¿Cómo usarlo?
 
-### Opción 1: Usuarios de Windows (sin instalar nada) ⭐ RECOMENDADO
+### Opción 1: Usuarios Generales (sin instalar nada) ⭐ RECOMENDADO
 
-1. Descargar `CSV_Analyzer.exe` desde [Releases](https://github.com/gonareco/csv-analyzer/releases)
-2. Hacer doble clic para ejecutar
-3. Se abrirá automáticamente en tu navegador
-4. Subí tu CSV y empezá a analizar
+1. Ingresar a https://csv-analyzer-oyp7.onrender.com/ (dale unos 3 minutos a que Render ponga todo en orden para poder usarlo.)
+2. Subí tu CSV y empezá a analizar
+
+> Nota: Tu CSV preferentemente debe tener menos de 20000 filas.
 
 > ⚠️ **Para educadores:** Podés distribuir el `.exe` a tus alumnos. No necesitan instalar nada.
 
@@ -58,9 +57,6 @@ Docentes	Herramienta gratuita para enseñar análisis de datos
 Estudiantes	Analizar CSVs sin programar
 Investigadores	Exploración rápida de datos
 Pequeñas empresas	Análisis de ventas, encuestas, inventarios
-📸 Vista previa
-
-    (Agregá capturas de pantalla aquí)
 
 🛠️ Tecnologías
 
@@ -85,14 +81,14 @@ csv-analyzer/
 
 ❓ Solución de problemas
 Problema	Solución
-Windows dice "Protegido"	Clic en "Más info" → "Ejecutar de todas formas"
-Error de encoding al subir CSV	Guardá el archivo como UTF-8
+Demora mucho Render? Tu CSV es quizá muy pesado, truncalo a menos filas y probá.
 El wordcloud no aparece	La columna necesita al menos 3 palabras diferentes
-Gráfico lento con muchos datos	El sistema muestrea automáticamente (>50k filas)
+Gráfico lento con muchos datos	El sistema muestrea automáticamente (>25k filas)
 📄 Licencia
 
 MIT - Libre para uso educativo y comercial.
-🙏 Agradecimientos
+
+Agradecimientos a la comunidad de software libre por tanto.
 
     Plotly Dash
 
